@@ -19,6 +19,10 @@ export const deleteFromList = (emails: IEmailModel[]) => ({
   payload: { emails },
 });
 
+export const getListCount = () => ({
+  type: "get_list_count",
+});
+
 // reducer to switch between inbox types
 const counterReducer = (state = { count: 1 }, action: { type: any }) => {
   switch (action.type) {
@@ -44,17 +48,21 @@ const counterReducer = (state = { count: 1 }, action: { type: any }) => {
 
 // initial inbox list reducer state
 const initialListState: IEmailModel[] = [];
-// inbox list reducer methods
+const initialState = {
+  initialListState,
+  count: initialListState.length,
+};
+
 export const inboxListReducer = (
-  state = initialListState,
+  state = initialState,
   { type, payload }: AnyAction
 ) => {
   switch (type) {
     case "store_list":
-      return payload.emails;
+      return { initialListState: payload.emails, count: payload.emails.length };
     case "delete_list":
-      state = removeDeletedItems(state, payload.emails);
-      return state;
+      let list = removeDeletedItems(state.initialListState, payload.emails);
+      return { initialListState: list, count: list.length };
     default:
       return state;
   }

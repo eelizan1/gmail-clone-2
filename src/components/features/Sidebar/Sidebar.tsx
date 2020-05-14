@@ -11,8 +11,8 @@ import { deleteArray } from "../../helpers/MessageHelper";
 
 const Sidebar: React.FC = () => {
   const dispatch = useDispatch();
-  const inboxItems: IEmailModel[] = useSelector(
-    (state: any) => state.inboxListReducer
+  const inboxItemsLength: number = useSelector(
+    (state: any) => state.inboxListReducer.count
   );
 
   const [isWorkTagSelected, setIsWorkTagSelected] = useState<boolean>(false);
@@ -20,12 +20,12 @@ const Sidebar: React.FC = () => {
     false
   );
   const [isInboxSelected, setIsInboxSelected] = useState<boolean>(true);
-  const [inboxCount, setInboxCount] = useState<number>(inboxItems.length);
+  const [inboxCount, setInboxCount] = useState<number>(inboxItemsLength);
 
   // set select styles to proper label tag
   useEffect(() => {
-    setInboxCount(inboxItems.length);
-  }, [inboxItems.length]);
+    setInboxCount(inboxItemsLength);
+  }, [inboxItemsLength]);
 
   // manual select of tag to filter inbox list
   const filterByTag = (value: number) => {

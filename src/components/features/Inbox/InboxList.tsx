@@ -12,7 +12,10 @@ interface IInboxListProps {
 const InboxList: React.FC<IInboxListProps> = ({ isAllChecked }) => {
   // get inbox items from store
   const inboxItems: IEmailModel[] = useSelector(
-    (state: any) => state.inboxListReducer
+    (state: any) => state.inboxListReducer.initialListState
+  );
+  const inboxItemsLength: number = useSelector(
+    (state: any) => state.inboxListReducer.count
   );
   // get the current label filter from the store
   const { count } = useSelector((state: any) => ({
@@ -31,7 +34,7 @@ const InboxList: React.FC<IInboxListProps> = ({ isAllChecked }) => {
     if (selectedMessage) {
       history.push("/inbox/" + selectedMessage.id);
     }
-  }, [history, selectedMessage, inboxItems, inboxItems.length, count]);
+  }, [history, selectedMessage, inboxItems, inboxItemsLength, count]);
 
   return (
     <div className="inbox-list-wrapper">

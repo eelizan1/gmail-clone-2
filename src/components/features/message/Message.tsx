@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 
 const Message: React.FC = () => {
   const inboxItems: IEmailModel[] = useSelector(
-    (state: any) => state.inboxListReducer
+    (state: any) => state.inboxListReducer.initialListState
   );
   const { id } = useParams();
   const [message, setMessage] = useState<IEmailModel>();

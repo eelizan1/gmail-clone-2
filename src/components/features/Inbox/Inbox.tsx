@@ -8,8 +8,8 @@ const Inbox = () => {
   const { count } = useSelector((state: any) => ({
     ...state.counterReducer,
   }));
-  const inboxItems: IEmailModel[] = useSelector(
-    (state: any) => state.inboxListReducer
+  const inboxItemsLength: number = useSelector(
+    (state: any) => state.inboxListReducer.count
   );
   const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
   const [currentCount, setCurrentCount] = useState<number>(count);
@@ -25,7 +25,7 @@ const Inbox = () => {
   // look out to diselect all boxes after a delete action
   useEffect(() => {
     setIsAllChecked(false);
-  }, [inboxItems.length]);
+  }, [inboxItemsLength]);
 
   return (
     <div className="inbox-container">
