@@ -23,9 +23,6 @@ const InboxRow: React.FC<IInboxRowProps> = ({
   const { count } = useSelector((state: any) => ({
     ...state.counterReducer,
   }));
-  const inboxItems: IEmailModel[] = useSelector(
-    (state: any) => state.inboxListReducer
-  );
   const inboxItemsLength: number = useSelector(
     (state: any) => state.inboxListReducer.count
   );
@@ -61,7 +58,11 @@ const InboxRow: React.FC<IInboxRowProps> = ({
   };
 
   return (
-    <div className="inbox-row-wrapper">
+    <div
+      className={
+        !finalCheckedState ? "inbox-row-wrapper" : "inbox-row-wrapper checked"
+      }
+    >
       <Checkbox
         checked={finalCheckedState}
         className="checkbox"

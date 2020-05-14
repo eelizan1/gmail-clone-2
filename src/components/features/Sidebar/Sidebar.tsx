@@ -6,7 +6,6 @@ import WorkOutlineIcon from "@material-ui/icons/WorkOutline";
 import FlightTakeoffIcon from "@material-ui/icons/FlightTakeoff";
 import "./Sidebar.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { IEmailModel } from "../../../interfaces/interface";
 import { deleteArray } from "../../helpers/MessageHelper";
 
 const Sidebar: React.FC = () => {

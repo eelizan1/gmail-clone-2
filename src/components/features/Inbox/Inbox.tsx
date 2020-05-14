@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import InboxList from "./InboxList";
 import InboxHeader from "./InboxHeader";
 import { useSelector } from "react-redux";
-import { IEmailModel } from "../../../interfaces/interface";
 
 const Inbox = () => {
   const { count } = useSelector((state: any) => ({

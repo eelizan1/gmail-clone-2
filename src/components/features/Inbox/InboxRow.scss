@@ -10,6 +10,10 @@
   grid-template-columns: 50px 200px min(742px) auto;
   border-bottom: $google-gray solid 1px;
 
+  &.checked {
+    background-color: $google-light-gray;
+  }
+
   .sender {
     margin-top: auto;
     margin-bottom: auto;
