@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.sidebar-wrapper {
+  .compose-button {
+    margin-top: 7px;
+    text-align: center;
+    border-radius: 20px;
+  }
+
+  .inbox-labels {
+    margin-top: 15px;
+    margin-left: 20px;
+
+    .all-label,
+    .work-label,
+    .travel-label {
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 0.875rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+      height: 30px;
+      width: 90%;
+      border-radius: 15px 50px 50px 5px;
+
+      &.selected {
+        background-color: $google-gray;
+      }
+
+      .side-icon {
+        cursor: pointer;
+        flex: 1;
+        &:hover {
+          transition: 0.3s;
+          opacity: 0.6;
+        }
+      }
+
+      label {
+        cursor: pointer;
+        flex: 2;
+        &:hover {
+          transition: 0.3s;
+          opacity: 0.6;
+        }
+      }
+
+      span {
+        cursor: pointer;
+        flex: 1;
+      }
+    }
+  }
+
+  @media (max-width: 600px) {
+    .compose-button {
+      display: none;
+    }
+
+    .inbox-labels {
+      display: none;
+    }
+  }
+}

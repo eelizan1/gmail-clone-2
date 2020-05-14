@@ -1,0 +1,92 @@
+@import "../../../styles/variables";
+
+// default styles for screene larger than 992
+.inbox-row-wrapper {
+  color: $google-dark-text;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  display: grid;
+  grid-template-columns: 50px 200px min(742px) auto;
+  border-bottom: $google-gray solid 1px;
+
+  .sender {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .subject-message {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+
+    .subject {
+      .message-label {
+        font-size: 12px;
+        background-color: $google-gray;
+        padding-left: 3px;
+        padding-right: 3px;
+        margin-right: 5px;
+      }
+    }
+
+    .message {
+      margin-top: auto;
+      margin-bottom: auto;
+      color: $google-light-text;
+      margin-left: 5px;
+    }
+  }
+
+  .date {
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: right;
+    margin-right: 20px;
+    white-space: nowrap;
+  }
+
+  &:hover {
+    background-color: $google-light-gray;
+    cursor: pointer;
+  }
+}
+
+// screen less than 600 px
+@media (max-width: 600px) {
+  .inbox-row-wrapper {
+    margin: 5px;
+    font-size: 14px;
+    max-width: 100%;
+    display: grid;
+    grid-row: auto;
+    grid-template-columns: 10% auto auto;
+    grid-template-areas:
+      "checkbox sender date"
+      "checkbox subject subject"
+      "checkbox message message";
+    border-bottom: $google-gray solid 1px;
+
+    .checkbox {
+      grid-area: checkbox;
+    }
+
+    .sender {
+      grid-area: sender;
+    }
+
+    .date {
+      grid-area: date;
+    }
+
+    .subject {
+      grid-area: subject;
+    }
+
+    .message {
+      font-size: 12px;
+      color: lightslategray;
+      grid-area: message;
+    }
+  }
+}

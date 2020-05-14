@@ -1,0 +1,15 @@
+@import "../../../styles/variables";
+
+.message-label {
+  font-size: 12px;
+  background-color: $google-gray;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-right: 5px;
+}
+
+@media (max-width: 600px) {
+  .message-label:first-child {
+    // margin-left: 10px;
+  }
+}

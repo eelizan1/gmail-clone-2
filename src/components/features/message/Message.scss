@@ -1,0 +1,66 @@
+@import "../../../styles/variables";
+
+.message-wrapper {
+  background-color: white;
+  height: inherit;
+  overflow-y: hidden;
+  .message-header {
+    padding: 20px;
+    margin: auto;
+    font-family: sans-serif;
+  }
+
+  .message-body {
+    font-size: 14px;
+    margin: 20px;
+
+    .body-header {
+      margin-bottom: 20px;
+      display: flex;
+
+      .message-sender {
+        grid-area: sender;
+        font-weight: 500;
+        margin-right: 10px;
+      }
+
+      .image {
+        grid-area: image;
+        margin-right: 20px;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      .message-tags {
+        grid-area: tags;
+        flex: 8;
+      }
+
+      .message-date {
+        grid-area: date;
+        font-weight: 500;
+        flex: 1;
+        white-space: nowrap;
+        @media (max-width: 600px) {
+          font-weight: 400;
+        }
+      }
+    }
+
+    .message-body-text {
+      line-height: 1.5em;
+      margin: auto;
+      width: 90%;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .body-header {
+    display: grid !important;
+    grid-template-columns: 13% auto 20%;
+    grid-template-areas:
+      "image sender date"
+      "image tags date";
+  }
+}

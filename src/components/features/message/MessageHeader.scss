@@ -1,0 +1,11 @@
+@import "../../../styles/variables";
+
+.message-header-wrapper {
+  padding-left: 3px;
+  height: 50px;
+  border-bottom: $google-gray 1px solid;
+
+  .refresh-icon {
+    vertical-align: middle;
+  }
+}
