@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from "redux";
 import { AnyAction } from "redux";
 import { IEmailModel } from "../interfaces/interface";
+import { removeDeletedItems } from "../components/helpers/MessageHelper";
 
 /** This is the shared resource (Store) so other parts of the application can use and manipulate
  * inbox data,
@@ -24,22 +25,22 @@ export const getListCount = () => ({
 });
 
 // reducer to switch between inbox types
-const counterReducer = (state = { count: 1 }, action: { type: any }) => {
+const filterReducer = (state = { filterId: 1 }, action: { type: any }) => {
   switch (action.type) {
     case "inbox":
       return {
         ...state,
-        count: state.count = 1,
+        filterId: state.filterId = 1,
       };
     case "travel":
       return {
         ...state,
-        count: state.count = 2,
+        filterId: state.filterId = 2,
       };
     case "work":
       return {
         ...state,
-        count: state.count = 3,
+        filterId: state.filterId = 3,
       };
     default:
       return state;
@@ -68,34 +69,12 @@ export const inboxListReducer = (
   }
 };
 
-// helper memthod to remove all items from store
-const removeDeletedItems = (state: IEmailModel[], array: IEmailModel[]) => {
-  for (let i = 0; i < array.length; i++) {
-    removeItem(state, array[i].id);
-  }
-
-  return state;
-};
-
-// helper method to remove item from store
-const removeItem = (array: IEmailModel[], item: string) => {
-  var removeIndex = array
-    .map(function (item) {
-      return item.id;
-    })
-    .indexOf(item);
-
-  if (removeIndex !== -1) {
-    array.splice(removeIndex, 1);
-  }
-};
-
 // initial state
 const INITIAL_STATE = {};
 
 // store - if multiple reducer then combine
 const rootReducer = combineReducers({
-  counterReducer,
+  filterReducer,
   inboxListReducer,
 });
 export const store = createStore(rootReducer, INITIAL_STATE);

@@ -4,22 +4,22 @@ import InboxHeader from "./InboxHeader";
 import { useSelector } from "react-redux";
 
 const Inbox = () => {
-  const { count } = useSelector((state: any) => ({
-    ...state.counterReducer,
+  const { filterId } = useSelector((state: any) => ({
+    ...state.filterReducer,
   }));
   const inboxItemsLength: number = useSelector(
     (state: any) => state.inboxListReducer.count
   );
   const [isAllChecked, setIsAllChecked] = useState<boolean>(false);
-  const [currentCount, setCurrentCount] = useState<number>(count);
+  const [currentFilter, setCurrentFilter] = useState<number>(filterId);
 
   // check if need to filter by label
   useEffect(() => {
-    if (count !== currentCount) {
+    if (filterId !== currentFilter) {
       setIsAllChecked(false);
-      setCurrentCount(count);
+      setCurrentFilter(filterId);
     }
-  }, [count, currentCount]);
+  }, [filterId, currentFilter]);
 
   // look out to diselect all boxes after a delete action
   useEffect(() => {

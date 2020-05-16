@@ -40,5 +40,30 @@ export const getMessagesByTagFromArray = (
   return emailList;
 };
 
+// helper memthod to remove all items from store
+export const removeDeletedItems = (
+  state: IEmailModel[],
+  array: IEmailModel[]
+) => {
+  for (let i = 0; i < array.length; i++) {
+    removeItem(state, array[i].id);
+  }
+
+  return state;
+};
+
+// helper method to remove item from store
+export const removeItem = (array: IEmailModel[], item: string) => {
+  var removeIndex = array
+    .map(function (item) {
+      return item.id;
+    })
+    .indexOf(item);
+
+  if (removeIndex !== -1) {
+    array.splice(removeIndex, 1);
+  }
+};
+
 // array to store the messages to delete
 export const deleteArray: IEmailModel[] = [];

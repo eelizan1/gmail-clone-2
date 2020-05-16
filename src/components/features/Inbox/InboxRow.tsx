@@ -20,9 +20,6 @@ const InboxRow: React.FC<IInboxRowProps> = ({
   email,
   onClick = () => false,
 }) => {
-  const { count } = useSelector((state: any) => ({
-    ...state.counterReducer,
-  }));
   const inboxItemsLength: number = useSelector(
     (state: any) => state.inboxListReducer.count
   );
@@ -32,7 +29,7 @@ const InboxRow: React.FC<IInboxRowProps> = ({
   // have individual check state match select all state
   useEffect(() => {
     setFinalCheckedState(isAllChecked);
-  }, [isAllChecked, count, inboxItemsLength]);
+  }, [isAllChecked, inboxItemsLength]);
 
   // add or remove items from delete array by check state
   useEffect(() => {

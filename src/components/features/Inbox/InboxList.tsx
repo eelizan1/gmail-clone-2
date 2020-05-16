@@ -18,8 +18,8 @@ const InboxList: React.FC<IInboxListProps> = ({ isAllChecked }) => {
     (state: any) => state.inboxListReducer.count
   );
   // get the current label filter from the store
-  const { count } = useSelector((state: any) => ({
-    ...state.counterReducer,
+  const { filterId } = useSelector((state: any) => ({
+    ...state.filterReducer,
   }));
   const [emailList, setEmailList] = useState<IEmailModel[]>([]);
   const [selectedMessage, setSelectedMessage] = useState<IEmailModel>();
@@ -28,13 +28,13 @@ const InboxList: React.FC<IInboxListProps> = ({ isAllChecked }) => {
   // set the current list from store based on label
   useEffect(() => {
     // with current items from store, filter by label
-    setEmailList(getMessagesByTagFromArray(inboxItems, count));
+    setEmailList(getMessagesByTagFromArray(inboxItems, filterId));
 
     // navigate to individial message details
     if (selectedMessage) {
       history.push("/inbox/" + selectedMessage.id);
     }
-  }, [history, selectedMessage, inboxItems, inboxItemsLength, count]);
+  }, [history, selectedMessage, inboxItems, inboxItemsLength, filterId]);
 
   return (
     <div className="inbox-list-wrapper">
