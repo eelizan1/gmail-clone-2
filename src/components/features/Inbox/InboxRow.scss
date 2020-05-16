@@ -7,47 +7,51 @@
   cursor: pointer;
   font-size: 16px;
   display: grid;
-  grid-template-columns: 50px 200px min(742px) auto;
+  grid-template-columns: 50px auto;
   border-bottom: $google-gray solid 1px;
 
   &.checked {
     background-color: $google-light-gray;
   }
 
-  .sender {
-    margin-top: auto;
-    margin-bottom: auto;
-  }
+  .inbox-row-content {
+    display: grid;
+    grid-template-columns: 200px min(742px) auto;
+    .sender {
+      margin-top: auto;
+      margin-bottom: auto;
+    }
 
-  .subject-message {
-    margin-top: auto;
-    margin-bottom: auto;
-    display: flex;
+    .subject-message {
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
 
-    .subject {
-      .message-label {
-        font-size: 12px;
-        background-color: $google-gray;
-        padding-left: 3px;
-        padding-right: 3px;
-        margin-right: 5px;
+      .subject {
+        .message-label {
+          font-size: 12px;
+          background-color: $google-gray;
+          padding-left: 3px;
+          padding-right: 3px;
+          margin-right: 5px;
+        }
+      }
+
+      .message {
+        margin-top: auto;
+        margin-bottom: auto;
+        color: $google-light-text;
+        margin-left: 5px;
       }
     }
 
-    .message {
+    .date {
       margin-top: auto;
       margin-bottom: auto;
-      color: $google-light-text;
-      margin-left: 5px;
+      text-align: right;
+      margin-right: 20px;
+      white-space: nowrap;
     }
-  }
-
-  .date {
-    margin-top: auto;
-    margin-bottom: auto;
-    text-align: right;
-    margin-right: 20px;
-    white-space: nowrap;
   }
 
   &:hover {
@@ -60,37 +64,49 @@
 @media (max-width: 600px) {
   .inbox-row-wrapper {
     margin: 5px;
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: 600;
     max-width: 100%;
     display: grid;
     grid-row: auto;
-    grid-template-columns: 10% auto auto;
+    grid-template-columns: 10% auto;
     grid-template-areas:
-      "checkbox sender date"
-      "checkbox subject subject"
-      "checkbox message message";
+      "checkbox rowContent"
+      "checkbox rowContent"
+      "checkbox rowContent";
     border-bottom: $google-gray solid 1px;
 
-    .checkbox {
-      grid-area: checkbox;
-    }
+    .inbox-row-content {
+      grid-area: rowContent;
+      display: grid;
+      grid-template-columns: auto auto;
+      grid-template-areas:
+        "sender date"
+        "subject subject"
+        "message message";
 
-    .sender {
-      grid-area: sender;
-    }
+      .checkbox {
+        grid-area: checkbox;
+      }
 
-    .date {
-      grid-area: date;
-    }
+      .sender {
+        grid-area: sender;
+      }
 
-    .subject {
-      grid-area: subject;
-    }
+      .date {
+        grid-area: date;
+      }
 
-    .message {
-      font-size: 12px;
-      color: lightslategray;
-      grid-area: message;
+      .subject {
+        grid-area: subject;
+      }
+
+      .message {
+        font-weight: normal;
+        font-size: 12px;
+        color: lightslategray;
+        grid-area: message;
+      }
     }
   }
 }

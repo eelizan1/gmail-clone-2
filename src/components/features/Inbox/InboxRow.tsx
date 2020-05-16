@@ -70,39 +70,33 @@ const InboxRow: React.FC<IInboxRowProps> = ({
         inputProps={{ "aria-label": "secondary checkbox" }}
         onChange={handleChange}
       />
-      <div className="sender" onClick={onClick}>
-        {email.sender}
-      </div>
+      <div className="inbox-row-content" onClick={onClick}>
+        <div className="sender">{email.sender}</div>
+        {width > 600 ? (
+          <div className="subject-message">
+            <div className="subject">
+              {email.tags &&
+                email.tags.map((tag, index) => {
+                  return <Label category={tag} key={index} />;
+                })}
 
-      {width > 600 ? (
-        <div className="subject-message" onClick={onClick}>
-          <div className="subject">
-            {email.tags &&
-              email.tags.map((tag, index) => {
-                return <Label category={tag} key={index} />;
-              })}
-
-            {email.subject}
+              {email.subject}
+            </div>
+            <div className="message">{email.body.substring(3, 40)}...</div>
           </div>
-          <div className="message">{email.body.substring(3, 40)}...</div>
-        </div>
-      ) : (
-        <>
-          <div className="subject" onClick={onClick}>
-            {email.subject}{" "}
-            {email.tags &&
-              email.tags.map((tag, index) => {
-                return <Label category={tag} key={index} />;
-              })}
-          </div>
-          <div className="message" onClick={onClick}>
-            {email.body.substring(3, 40)}...
-          </div>
-        </>
-      )}
-
-      <div className="date" onClick={onClick}>
-        {formatDate(email.date)}
+        ) : (
+          <>
+            <div className="subject">
+              {email.subject}{" "}
+              {email.tags &&
+                email.tags.map((tag, index) => {
+                  return <Label category={tag} key={index} />;
+                })}
+            </div>
+            <div className="message">{email.body.substring(3, 40)}...</div>
+          </>
+        )}
+        <div className="date">{formatDate(email.date)}</div>
       </div>
     </div>
   );
